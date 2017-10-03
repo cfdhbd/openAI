@@ -1,0 +1,53 @@
+"""
+import gym
+env = gym.make('CartPole-v0')
+env.reset()
+for _ in range(100):
+    env.render()
+    X = env.step(env.action_space.sample())
+    print (X)
+"""
+"""
+import gym
+env = gym.make('CartPole-v0')
+print(env.action_space)
+print(env.observation_space)
+print(env.observation_space.high)
+print(env.observation_space.low)
+"""
+#save this
+"""
+import gym
+from gym import spaces
+env = gym.make('CartPole-v0')
+env.reset()
+space = spaces.Discrete(800)
+x = space.sample()
+assert space.contains(x)
+assert space.n == 800
+for _ in range(100):
+    env.render()
+    X = env.step(env.action_space.sample())
+    observation, reward, done, info = X
+    if done == True:
+        env.reset()
+    print (X)
+"""
+"""
+import gym
+from gym import wrappers
+env = gym.make('CartPole-v0')
+env = wrappers.Monitor(env, '/tmp/cartpole-experiment-2', force = True)
+for i in range(20):
+    observation = env.reset()
+    for t in range(100):
+        env.render()
+        print(observation)
+        action = env.action_space.sample()
+        observation, reward, done, info = env.step(action)
+        if done:
+            print("Episode finished after {} timesteps".format(t+1))
+            break
+"""
+import gym
+gym.upload('/tmp/cartpole-experiment-2', api_key = 'sk_RchUYAgTVO7uIoThyRmhA')
